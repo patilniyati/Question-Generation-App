@@ -1,0 +1,411 @@
+/*
+  Palette
+  -------
+  #F8F4E9 cream  -> page background
+  #F6DBC0 peach  -> sidebar, soft fills
+  #935073 plum   -> headings, buttons, header banner (cream text on top)
+  #50D255 green  -> accents/fills ONLY, always with dark text on it
+  + neutrals: white cards, ink #2E2230 for text
+
+  Every text and widget colour is set explicitly below, so the app looks the
+  same in light mode, dark mode, and with or without .streamlit/config.toml.
+*/
+
+:root {
+  --green: #50d255;
+  --plum: #935073;
+  --plum-deep: #6f3856;
+  --peach: #f6dbc0;
+  --cream: #f8f4e9;
+  --ink: #2e2230;
+  --muted: #5e4b58;
+  --line: #ead9c4;
+  --danger: #a3241c;
+  color-scheme: light;
+}
+
+/* ---------- Base ---------- */
+
+html, body, .stApp, [data-testid="stAppViewContainer"], [data-testid="stMain"] {
+  background: var(--cream) !important;
+  color: var(--ink);
+  color-scheme: light;
+}
+
+[data-testid="stHeader"] { background: transparent; }
+[data-testid="stDecoration"], .stAppDeployButton { display: none !important; }
+
+.block-container {
+  padding: 2rem 2rem 4rem;
+  max-width: 1180px;
+}
+
+.stApp h1, .stApp h2, .stApp h3, .stApp h4, .stApp h5 { color: var(--plum-deep); }
+
+.stApp [data-testid="stMarkdownContainer"] p,
+.stApp [data-testid="stMarkdownContainer"] li { color: var(--ink); }
+
+.stApp label,
+.stApp [data-testid="stWidgetLabel"],
+.stApp [data-testid="stWidgetLabel"] p { color: var(--ink) !important; font-weight: 600; }
+
+.stApp [data-testid="stCaptionContainer"],
+.stApp [data-testid="stCaptionContainer"] p { color: var(--muted) !important; }
+
+.stApp hr { border-color: var(--line); }
+
+/* ---------- Sidebar ---------- */
+
+[data-testid="stSidebar"] {
+  background: var(--peach) !important;
+  border-right: 1px solid var(--line);
+}
+
+[data-testid="stSidebar"] * { color: var(--ink); }
+
+.stApp .user-chip {
+  background: var(--cream);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.stApp .user-chip .name { font-weight: 700; color: var(--plum-deep); }
+.stApp .user-chip .email { font-size: 0.82rem; color: var(--muted); word-break: break-all; }
+
+/* ---------- Header banner ---------- */
+
+.stApp .main-header {
+  background: var(--plum);
+  box-shadow: inset 8px 0 0 var(--green);
+  border-radius: 18px;
+  padding: 1.5rem 1.8rem 1.5rem 2.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.stApp .main-header h1 {
+  margin: 0;
+  padding: 0;
+  font-size: 1.75rem;
+  color: var(--cream) !important;
+}
+
+.stApp .main-header p {
+  margin: 0.4rem 0 0;
+  color: var(--cream) !important;
+  opacity: 0.92;
+}
+
+/* ---------- Sign-in page ---------- */
+
+.stApp .auth-brand { text-align: center; margin: 1.5rem 0 1.4rem; }
+.stApp .auth-brand h1 { margin: 0; font-size: 2rem; }
+.stApp .auth-brand p { color: var(--muted) !important; margin: 0.4rem 0 0; }
+
+/* ---------- Cards ---------- */
+
+.st-key-upload_card,
+.st-key-settings_card,
+[data-testid="stForm"] {
+  background: #fff;
+  border: 1px solid var(--line) !important;
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+}
+
+.st-key-upload_card { margin-bottom: 1rem; }
+
+.stApp .step-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--plum-deep);
+  margin-bottom: 0.7rem;
+}
+
+.stApp .step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--ink);
+  font-size: 0.9rem;
+}
+
+/* ---------- Buttons ---------- */
+
+.stApp .stButton > button,
+.stApp .stDownloadButton > button,
+.stApp [data-testid="stFormSubmitButton"] > button,
+.stApp [data-testid^="stBaseButton-secondary"],
+.stApp [data-testid^="stBaseButton-primary"] {
+  border-radius: 12px;
+  border: 1.5px solid var(--plum);
+  background: #fff;
+  color: var(--plum-deep);
+  font-weight: 600;
+  min-height: 2.7rem;
+}
+
+.stApp .stButton > button:hover,
+.stApp .stDownloadButton > button:hover,
+.stApp [data-testid="stFormSubmitButton"] > button:hover,
+.stApp [data-testid^="stBaseButton-secondary"]:hover {
+  background: var(--peach);
+  border-color: var(--plum-deep);
+  color: var(--plum-deep);
+}
+
+.stApp button[kind^="primary"],
+.stApp [data-testid^="stBaseButton-primary"] {
+  background: var(--plum);
+  border-color: var(--plum);
+  color: var(--cream);
+}
+
+.stApp button[kind^="primary"]:hover,
+.stApp [data-testid^="stBaseButton-primary"]:hover {
+  background: var(--plum-deep);
+  border-color: var(--plum-deep);
+  color: #fff;
+}
+
+/* button labels sit inside a markdown paragraph; make them follow the button colour */
+.stApp button p, .stApp button span { color: inherit !important; }
+
+/* ---------- Inputs ---------- */
+
+.stApp input,
+.stApp textarea {
+  color: var(--ink) !important;
+  -webkit-text-fill-color: var(--ink);
+  caret-color: var(--plum);
+}
+
+.stApp textarea:disabled {
+  opacity: 1;
+  -webkit-text-fill-color: var(--ink);
+  background: var(--cream) !important;
+}
+
+.stApp ::placeholder { color: #85707e !important; -webkit-text-fill-color: #85707e; opacity: 1; }
+
+.stApp [data-baseweb="input"],
+.stApp [data-baseweb="textarea"],
+.stApp [data-baseweb="base-input"],
+.stApp [data-baseweb="select"] > div {
+  background: #fff !important;
+  border-radius: 10px;
+  border-color: var(--line);
+}
+
+.stApp [data-baseweb="select"] *,
+.stApp [data-baseweb="select"] svg { color: var(--ink); fill: var(--ink); }
+
+/* newer Streamlit versions use these containers instead of baseweb ones */
+.stApp [data-testid="stTextInputRootElement"],
+.stApp [data-testid="stTextAreaRootElement"],
+.stApp [data-testid="stNumberInputContainer"],
+.stApp [data-testid="stSelectbox"] [role="group"] {
+  background: #fff !important;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.stApp [data-testid="stSelectbox"] input,
+.stApp [data-testid="stSelectbox"] button,
+.stApp [data-testid="stSelectbox"] svg { color: var(--ink) !important; -webkit-text-fill-color: var(--ink); }
+.stApp [data-testid="stSelectbox"] [role="group"] > div { color: var(--ink) !important; }
+
+/* dropdown menus are rendered in a portal outside .stApp */
+[data-baseweb="popover"], [data-baseweb="menu"], ul[role="listbox"] {
+  background: #fff !important;
+  color: var(--ink) !important;
+}
+[data-baseweb="popover"] li, [role="option"] { background: #fff !important; color: var(--ink) !important; }
+[role="option"]:hover, [role="option"][aria-selected="true"] { background: var(--peach) !important; }
+
+/* slider */
+.stApp [data-testid="stSlider"] [role="slider"] { background: var(--plum) !important; }
+.stApp [data-testid="stSliderThumbValue"], .stApp [data-testid="stSliderThumbValue"] * { color: var(--plum-deep) !important; }
+.stApp [data-testid="stSliderTickBarMin"], .stApp [data-testid="stSliderTickBarMax"] { color: var(--muted) !important; }
+
+/* file uploader */
+.stApp [data-testid="stFileUploaderDropzone"] {
+  background: var(--cream);
+  border: 2px dashed var(--plum);
+  border-radius: 14px;
+}
+.stApp [data-testid="stFileUploaderDropzoneInstructions"] * { color: var(--muted); }
+.stApp [data-testid="stFileUploaderDropzoneInstructions"] span:first-child { color: var(--ink); }
+
+/* uploaded file chip: peach pill with a plum icon tile */
+.stApp [data-testid="stFileChip"],
+.stApp [data-testid="stFileUploaderFile"] {
+  background: var(--peach) !important;
+  border-radius: 10px;
+}
+.stApp [data-testid="stFileChip"] div { color: var(--muted); }
+.stApp [data-testid="stBaseButton-borderlessIcon"],
+.stApp [data-testid="stBaseButton-borderlessIcon"] *,
+.stApp [data-testid="stBaseButton-minimal"],
+.stApp [data-testid="stBaseButton-minimal"] * { color: var(--plum-deep) !important; }
+.stApp [data-testid="stFileChipName"],
+.stApp [data-testid="stFileUploaderFileName"] { color: var(--ink) !important; font-weight: 600; }
+.stApp [data-testid="stFileChipDeleteBtn"],
+.stApp [data-testid="stFileChipDeleteBtn"] * { color: var(--plum-deep) !important; }
+.stApp [data-testid="stFileChip"] div:has(> svg) { background: var(--plum) !important; border-radius: 8px; }
+.stApp [data-testid="stFileChip"] div:has(> svg) svg { color: var(--cream); fill: currentColor; }
+
+/* radio (sidebar navigation) */
+.stApp [data-testid="stRadio"] label p { font-weight: 600; }
+
+/* tabs */
+.stApp button[role="tab"] p { color: var(--muted) !important; font-weight: 600; }
+.stApp button[role="tab"][aria-selected="true"] p { color: var(--plum-deep) !important; }
+.stApp [data-baseweb="tab-highlight"] { background: var(--plum) !important; }
+.stApp [data-baseweb="tab-border"] { background: var(--line) !important; }
+
+/* alerts (st.info / success / warning / error) */
+.stApp [data-testid="stAlert"] {
+  background: #fff !important;
+  border: 1px solid var(--line);
+  border-left: 5px solid var(--plum);
+  border-radius: 12px;
+}
+.stApp [data-testid="stAlert"] * { color: var(--ink) !important; }
+.stApp [data-testid="stAlert"]:has([data-testid="stAlertContentSuccess"]) { border-left-color: var(--green); }
+.stApp [data-testid="stAlert"]:has([data-testid="stAlertContentError"]) { border-left-color: var(--danger); }
+.stApp [data-testid="stAlert"]:has([data-testid="stAlertContentWarning"]) { border-left-color: #d9962b; }
+
+/* expanders */
+.stApp [data-testid="stExpander"] {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+.stApp [data-testid="stExpander"] summary { background: rgba(246, 219, 192, 0.45); border-radius: 13px; }
+.stApp [data-testid="stExpander"] summary *, .stApp [data-testid="stExpander"] summary svg { color: var(--ink); fill: var(--ink); }
+
+/* ---------- File summary strip ---------- */
+
+.stApp .file-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1rem;
+}
+
+.stApp .file-summary .file-name {
+  font-weight: 700;
+  color: var(--ink);
+  margin-right: 0.4rem;
+  word-break: break-all;
+}
+
+/* ---------- Empty state ---------- */
+
+.stApp .empty-state {
+  background: #fff;
+  border: 1px dashed var(--plum);
+  border-radius: 18px;
+  padding: 1.6rem 1.8rem;
+  color: var(--ink);
+}
+
+.stApp .empty-state h3 { margin: 0 0 0.8rem; }
+.stApp .empty-state p { color: var(--muted) !important; margin: 0; }
+
+.stApp .empty-state .how-step {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.45rem 0;
+  color: var(--ink);
+}
+
+/* ---------- MCQ cards ---------- */
+
+.stApp .mcq-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 6px solid var(--plum);
+  border-radius: 16px;
+  padding: 1.2rem 1.3rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(147, 80, 115, 0.06);
+}
+
+.stApp .mcq-question {
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+  line-height: 1.45;
+}
+
+.stApp .mcq-option {
+  padding: 0.4rem 0.7rem;
+  margin-bottom: 0.25rem;
+  border-radius: 8px;
+  background: var(--cream);
+  color: var(--ink);
+}
+
+.stApp .mcq-option strong { color: var(--plum-deep); margin-right: 0.3rem; }
+
+.stApp .correct-answer {
+  margin-top: 0.8rem;
+  padding: 0.6rem 0.9rem;
+  background: #e3f7e4;
+  border: 1px solid var(--green);
+  border-radius: 10px;
+  color: #1d5e21;
+  font-weight: 700;
+}
+
+.stApp .source-text {
+  margin-top: 0.8rem;
+  padding: 0.8rem 0.9rem;
+  background: var(--cream);
+  border-left: 3px solid var(--peach);
+  border-radius: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.stApp .error-box {
+  background: #fdecea;
+  border: 1px solid #f3b8b3;
+  color: var(--danger);
+  padding: 0.8rem;
+  border-radius: 12px;
+  margin-bottom: 0.5rem;
+}
+
+/* ---------- History ---------- */
+
+.stApp .history-meta { margin-bottom: 0.8rem; }
+
+.stApp .pill {
+  display: inline-block;
+  padding: 0.15rem 0.7rem;
+  margin-right: 0.3rem;
+  border-radius: 999px;
+  background: var(--peach);
+  color: var(--plum-deep);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.stApp .pill.green { background: var(--green); color: var(--ink); }
