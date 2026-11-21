@@ -9,3 +9,7 @@ __pycache__/
 venv/
 .pytest_cache/
 .ruff_cache/
+
+# macOS
+.DS_Store
+**/.DS_Store
